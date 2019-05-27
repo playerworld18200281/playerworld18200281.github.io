@@ -1,30 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<style>
-    *{list-style: none;margin:0;padding: 0;}
-    ul{padding:0 30px;background:#5795f7; width: 100%;height:40px;}
-    ul li {float: left;margin: 0 0px;}
-    ul li a{color:#fff;text-decoration: none; display: block;
-        padding:0 30px;line-height: 40px;}
-    ul li a:hover{background:#5745f7; }
-</style>
-<ul>
-    <li><a href="#">file</a></li>
-    <li><a href="#">edit</a></li>
-    <li><a href="#">view</a></li>
-    <li><a href="#">navigate</a></li>
-    <li><a href="#">code</a></li>
-    <li><a href="#">refactor</a></li>
-    <li><a href="#">run</a></li>
-    <li><a href="#">tools</a></li>
-    <li><a href="#">vcs</a></li>
-    <li><a href="#">windows</a></li>
-    <li><a href="#">help</a></li>
-</ul>
-</body>
-</html>
+<pre style="width: 100%; height: 100%; margin:0px; "></pre>
+
+<script src='js/eosjs-api.js'></script>
+<script src='js/eosjs-jsonrpc.js'></script>
+<script src='js/eosjs-jssig.js'></script>
+<script>
+    let pre = document.getElementsByTagName('pre')[0];
+    const defaultPrivateKey = "5KN4ZJCfkZ89o5LyXRgjmoz1xFWxB3pE7DuFhMwUpKBR3qFyZA7"; // bob
+    const rpc = new eosjs_jsonrpc.JsonRpc('https://api.eosnewyork.io');
+    const signatureProvider = new eosjs_jssig.JsSignatureProvider([defaultPrivateKey]);
+    const api = new eosjs_api.Api({ rpc, signatureProvider });
+
+    (async () => {
+        try {
+            const result = await api.transact({
+            actions: [{
+                account: 'playerworld5',
+                name: 'hi',
+                authorization: [{
+                    actor: 'playerworld5',
+                    permission: 'active',
+                }],
+                data: {
+                    user: 'bob',
+                },
+            }]
+        }, {
+            blocksBehind: 3,
+            expireSeconds: 30,
+        });
+    pre.textContent += JSON.stringify(result, null, 2);
+    } catch (e) {
+        pre.textContent = '\nCaught exception: ' + e;
+        if (e instanceof eosjs_jsonrpc.RpcError)
+            pre.textContent += '\n\n' + JSON.stringify(e.json, null, 2);
+    }
+    })();
+</script>
