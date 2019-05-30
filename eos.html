@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SKR EOS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" type="text/css" href="./static/eos.css">
+	<script src="static/eos.js"></script>
+	<script src="js/scatterjs-core.min.js"></script>
+	<script src="js/scatterjs-plugin-eosjs.min.js"></script>
+	<script src="js/scatterjs-plugin-eosjs2.min.js"></script>
+	<script src="js/scatterjs-plugin-web3.min.js"></script>
+	<script src="js/scatterjs-plugin-tron.min.js"></script>
+	<script src="js/jquery.1.11.3.js"></script>
+</head>
+<body>
+<a href="#" style="display: none;" id="user_loginout" onclick="loginout()">退出</a>
+<a href="#" id="user_login" onclick="index()">登录</a>
+<!--<p id="name_id"></p>-->
+<script>
+
+    function loginout() {
+        // Don't forget to tell ScatterJS which plugins you are using.
+        ScatterJS.plugins( new ScatterEOS() );
+
+        // Networks are used to reference certain blockchains.
+        // They let you get accounts and help you build signature providers.
+        const network = {
+            blockchain:'eos',
+            protocol:'https',
+            host:'nodes.get-scatter.com',
+            port:443,
+            chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+        }
+
+        // First we need to connect to the user's Scatter.
+        ScatterJS.scatter.connect('My-App').then(connected => {
+
+            // If the user does not have Scatter or it is Locked or Closed this will return false;
+            if(!connected) return false;
+
+        const scatter = ScatterJS.scatter;
+        scatter.forgetIdentity()
+
+// The latest scatter-js will also allow using:
+        var s = scatter.logout()
+        console.log(scatter);
+        console.log(s);
+        $("#user_login").html('登录');
+        $("#user_loginout").hide();
+    });
+    }
+    function index() {
+
+        // Don't forget to tell ScatterJS which plugins you are using.
+        ScatterJS.plugins( new ScatterEOS() );
+
+        // Networks are used to reference certain blockchains.
+        // They let you get accounts and help you build signature providers.
+        const network = {
+            blockchain:'eos',
+            protocol:'https',
+            host:'nodes.get-scatter.com',
+            port:443,
+            chainId:'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+        }
+
+        // First we need to connect to the user's Scatter.
+        ScatterJS.scatter.connect('My-App').then(connected => {
+
+            // If the user does not have Scatter or it is Locked or Closed this will return false;
+            if(!connected) return false;
+
+        const scatter = ScatterJS.scatter;
+
+        // Now we need to get an identity from the user.
+        // We're also going to require an account that is connected to the network we're using.
+        const requiredFields = { accounts:[network] };
+        scatter.getIdentity(requiredFields).then(() => {
+
+            // Always use the accounts you got back from Scatter. Never hardcode them even if you are prompting
+            // the user for their account name beforehand. They could still give you a different account.
+            const account = scatter.identity.accounts.find(x => x.blockchain === 'eos');
+
+        // You can pass in any additional options you want into the eosjs reference.
+        const eosOptions = { expireInSeconds:60 };
+
+        // Get a proxy reference to eosjs which you can use to sign transactions with a user's Scatter.
+//    const eos = scatter.eos(network, Eos, eosOptions);
+
+        // ----------------------------
+        // Now that we have an identity,
+        // an EOSIO account, and a reference
+        // to an eosjs object we can send a transaction.
+        // ----------------------------
+
+
+        // Never assume the account's permission/authority. Always take it from the returned account.
+        const transactionOptions = { authorization:[`${account.name}@${account.authority}`] };
+//        console.log(transactionOptions);
+        console.log(account.name);
+        $("#user_login").html(account.name);
+        $("#user_loginout").show();
+// eos.transfer(account.name, 'helloworld', '1.0000 EOS', 'memo', transactionOptions).then(trx => {
+//            // That's it!
+//
+//            console.log(`Transaction ID: ${trx.transaction_id}`);
+//    }).catch(error => {
+//            console.error(error);
+//    });
+
+    }).catch(error => {
+            // The user rejected this request, or doesn't have the appropriate requirements.
+            console.error(error);
+    });
+    });
+    }
+</script>
+	<div id="app">
+		<!-- 提示框 -->
+		<div :class="{'prompt':true,'active':isPrompt}">
+			<div v-html="languageCon.prompt"></div>
+			<div class="button-prompt" @click="cancelY()">
+				{{ languageCon.yep }}
+			</div>
+		</div>
+		<!-- header -->
+	  	<div class="eos-header">
+	  		<img class="logo" src="./images/logo.png">
+	  		<img class="nav" @click="tabNav()" src="./images/nav.png">
+	  	</div>
+	  	<ul :class="{ 'active':isNavActive,'eos-nav':true }">
+	  		<li @click="languageTab('Chinese')">中文</li>
+	  		<li @click="languageTab('English')">English</li>
+	  	</ul>
+	  	<!-- banner -->
+	  	<div class="eos-box">
+	  		<div class="eos-fix">
+	  			<div class="eos-fix-left">
+	  				<p class="eos-font-h4">{{ languageCon.big }} 1</p>
+	  				<div class="center">
+	  					<img class="trophy" src="./images/trophy.png">
+		  				<p class="DIN-H1">750.7001</p>
+	  				</div>
+					<p class="eos-font-h5">EOS</p>
+					<p class="DIN-H2 center">23:59:16</p>
+	  			</div>
+	  			<div class="eos-fix-right">
+	  				<p class="eos-font-h4">{{ languageCon.small }} 42</p>
+	  				<div class="center">
+	  					<img class="trophy" src="./images/trophy.png">
+		  				<p class="DIN-H1">18.92251</p>
+	  				</div>
+					<p class="eos-font-h5">EOS</p>
+					<p class="DIN-H2 center">23:59:16</p>
+	  			</div>
+	  		</div>
+	  		<div class="eos-banner-info" style="margin: 15px 10px;">
+	  			{{ languageCon.winningRules }}
+	  		</div>
+	  	</div>
+	  	<!-- 购票 -->
+	  	<div class="eos-buy">
+	  		<div class="eos-tab">
+	  			<span @click="switchFunction(1)" v-bind:class="{'eos-table-active':isActive == 1}">{{ languageCon.ticket }}</span>
+	  			<span @click="switchFunction(2)" v-bind:class="{'eos-table-active':isActive == 2}">{{ languageCon.participate }}</span>
+	  		</div>
+	  		<!-- 购买 -->
+	  		<div :class="{'eos-content':true,'active':isActive == 1}">
+	  			<br>
+	  			<p style="color: #bec9f1;">{{ languageCon.rate }} 1EOS=333PCC</p>
+	  			<div class="eos-con-input">
+	  				<span @click="amountFun('1 EOS')">1 EOS</span>
+	  				<span @click="amountFun('11 EOS')">11 EOS</span>
+	  				<span @click="amountFun('31 EOS')">31 EOS</span>
+	  			</div>
+	  			<div class="eos-box-input-span">
+	  				<input type="text" name="" placeholder="1 EOS" :value="amount">
+	  				<p>
+	  					<span style="color: #0000ee;font-size: 13px;"> EOS</span>
+	  				</p>
+	  				<button>{{ languageCon.send }}</button>
+	  			</div>
+	  		</div>
+	  		<!-- 参与 -->
+	  		<div :class="{'eos-content':true,'active':isActive == 2}">
+	  			<br>
+	  			<div class="eos-buy-2">
+		  			<p><img class="icon-small" src="./images/hammer.png"> {{ languageCon.referee }} testtest5555</p>
+					<p><img class="icon-small" src="./images/plane.png"> {{ languageCon.push }} 20</p>
+					<p><img class="icon-small" src="./images/arrow.png"> {{ languageCon.invitation }}eos.com</p>
+					<button style="margin-top: 15px;">{{ languageCon.copy }}</button>
+				</div>
+	  		</div>
+	  	</div>
+	  	<div class="eos-title">
+	  		<div>
+	  		<span>{{ languageCon.statistics }}</span>
+	  		</div>
+	  	</div>
+		<div class="eos-box" style="padding: 20px;">
+			<div class="eos-tab-2">
+	  			<span @click="statistical(1)" :class="{'active':isActive2 == 1}">{{ languageCon.income }}</span>
+	  			<span @click="statistical(2)" :class="{'active':isActive2 == 2}">{{ languageCon.statistical }}</span>
+	  			<span @click="statistical(3)" :class="{'active':isActive2 == 3}">{{ languageCon.historical }}</span>
+	  		</div>
+	  		<!-- 我的收入 -->
+	  		<div :class="{'eos-tab2-con':true,'active':isActive2 == 1}">
+	  			<ul>
+					<li><span>{{ languageCon.dividendIncome }}</span><span class="span2">+0.2500 EOS</span></li>
+					<li><span>{{ languageCon.recommendIncome }}</span><span class="span2">+1.5186 EOS</span></li>
+					<li><span>{{ languageCon.pool }}</span><span class="span2">+0.2000 EOS</span></li>
+					<li><span>{{ languageCon.countdown }}</span><span class="span2">23 : 58 : 26</span></li>
+					<li><span>{{ languageCon.incomeLimits }}</span><span class="span2">+0.6750 EOS</span></li>
+					<li><span>{{ languageCon.notStable }}</span><span class="span2">+0.1010 EOS</span></li>
+					<li><span>{{ languageCon.settle }}</span><span class="span2">+0.3000 EOS</span></li>
+					<li><span>{{ languageCon.exitEarnings }}</span><span class="span2">+0.2000 EOS</span></li>
+	  			</ul>
+	  		</div>
+	  		<!--  统计 -->
+	  		<div :class="{'eos-tab2-con':true,'active':isActive2 == 2}">
+	  			<ul>
+					<li><span>{{ languageCon.bigPol }}</span><span class="span2">+0.2500 EOS</span></li>
+					<li><span>{{ languageCon.smallPol }}</span><span class="span2">+1.5186 EOS</span></li>
+					<li><span>{{ languageCon.ticketTate }}</span><span class="span2">+0.2000 EOS</span></li>
+					<li><span>{{ languageCon.burned }}</span><span class="span2">23 : 58 : 26</span></li>
+					<li><span>{{ languageCon.total }}</span><span class="span2">+0.6750 EOS</span></li>
+					<li><span>{{ languageCon.notStable }}</span><span class="span2">+0.1010 EOS</span></li>
+					<li><span>{{ languageCon.recommend }}</span><span class="span2">+0.3000 EOS</span></li>
+					<li><span>{{ languageCon.Team }}</span><span class="span2">+0.2000 EOS</span></li>
+					<li><span>{{ languageCon.Ambassador }}</span><span class="span2">+0.2000 EOS</span></li>
+	  			</ul>
+	  		</div>
+	  		<!-- 历史记录 -->
+	  		<div :class="{'eos-tab2-con':true,'active':isActive2 == 3,centerCon:true}">
+	  			<br>
+	  			<p>{{ languageCon.totalBig }}</p>
+	  			<p>{{ languageCon.totalSmall }}</p><br>
+				<p>{{ languageCon.totalSee }}</p>
+	  		</div>
+	  		<button @click="extract()">{{ languageCon.exitIncome }}</button>
+		</div>
+	  	<div class="eos-title">
+	  		<div>
+	  		<span>{{ languageCon.rules }}</span>
+	  		</div>
+	  	</div>
+	  	<div class="eos-box-2" v-html="languageCon.rulesContext"></div>
+	  	<br><br><br><br>
+	</div>
+</body>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+	<script type="text/javascript" src="./static/eos.js"></script>
+</html>
