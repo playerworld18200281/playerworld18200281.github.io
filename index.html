@@ -5,13 +5,17 @@
 	<title>SKR EOS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
 	<link rel="stylesheet" type="text/css" href="./static/eos.css">
-	<script src="static/eos.js"></script>
+	<!--<script src="static/eos.js"></script>-->
+    <script src="js/jquery.1.11.3.js"></script>
 	<script src="js/scatterjs-core.min.js"></script>
 	<script src="js/scatterjs-plugin-eosjs.min.js"></script>
 	<script src="js/scatterjs-plugin-eosjs2.min.js"></script>
 	<script src="js/scatterjs-plugin-web3.min.js"></script>
 	<script src="js/scatterjs-plugin-tron.min.js"></script>
-	<script src="js/jquery.1.11.3.js"></script>
+    <script src='js/eosjs-api.js'></script>
+    <script src='js/eosjs-jsonrpc.js'></script>
+    <script src='js/eosjs-jssig.js'></script>
+
 </head>
 <body>
 <a href="#" style="display: none;" id="user_loginout" onclick="loginout()">退出</a>
@@ -19,9 +23,7 @@
 <!--<p id="name_id"></p>-->
 <pre style="width: 100%; height: 100%; margin:0px; "></pre>
 
-<script src='js/eosjs-api.js'></script>
-<script src='js/eosjs-jsonrpc.js'></script>
-<script src='js/eosjs-jssig.js'></script>
+
 <script>
     let pre = document.getElementsByTagName('pre')[0];
     const defaultPrivateKey = "5KN4ZJCfkZ89o5LyXRgjmoz1xFWxB3pE7DuFhMwUpKBR3qFyZA7"; // bob
@@ -155,139 +157,7 @@
     });
     }
 </script>
-	<div id="app" style="display:none">
-		<!-- 提示框 -->
-		<div :class="{'prompt':true,'active':isPrompt}">
-			<div v-html="languageCon.prompt"></div>
-			<div class="button-prompt" @click="cancelY()">
-				{{ languageCon.yep }}
-			</div>
-		</div>
-		<!-- header -->
-	  	<div class="eos-header">
-	  		<img class="logo" src="./images/logo.png">
-	  		<img class="nav" @click="tabNav()" src="./images/nav.png">
-	  	</div>
-	  	<ul :class="{ 'active':isNavActive,'eos-nav':true }">
-	  		<li @click="languageTab('Chinese')">中文</li>
-	  		<li @click="languageTab('English')">English</li>
-	  	</ul>
-	  	<!-- banner -->
-	  	<div class="eos-box">
-	  		<div class="eos-fix">
-	  			<div class="eos-fix-left">
-	  				<p class="eos-font-h4">{{ languageCon.big }} 1</p>
-	  				<div class="center">
-	  					<img class="trophy" src="./images/trophy.png">
-		  				<p class="DIN-H1">750.7001</p>
-	  				</div>
-					<p class="eos-font-h5">EOS</p>
-					<p class="DIN-H2 center">23:59:16</p>
-	  			</div>
-	  			<div class="eos-fix-right">
-	  				<p class="eos-font-h4">{{ languageCon.small }} 42</p>
-	  				<div class="center">
-	  					<img class="trophy" src="./images/trophy.png">
-		  				<p class="DIN-H1">18.92251</p>
-	  				</div>
-					<p class="eos-font-h5">EOS</p>
-					<p class="DIN-H2 center">23:59:16</p>
-	  			</div>
-	  		</div>
-	  		<div class="eos-banner-info" style="margin: 15px 10px;">
-	  			{{ languageCon.winningRules }}
-	  		</div>
-	  	</div>
-	  	<!-- 购票 -->
-	  	<div class="eos-buy">
-	  		<div class="eos-tab">
-	  			<span @click="switchFunction(1)" v-bind:class="{'eos-table-active':isActive == 1}">{{ languageCon.ticket }}</span>
-	  			<span @click="switchFunction(2)" v-bind:class="{'eos-table-active':isActive == 2}">{{ languageCon.participate }}</span>
-	  		</div>
-	  		<!-- 购买 -->
-	  		<div :class="{'eos-content':true,'active':isActive == 1}">
-	  			<br>
-	  			<p style="color: #bec9f1;">{{ languageCon.rate }} 1EOS=333PCC</p>
-	  			<div class="eos-con-input">
-	  				<span @click="amountFun('1 EOS')">1 EOS</span>
-	  				<span @click="amountFun('11 EOS')">11 EOS</span>
-	  				<span @click="amountFun('31 EOS')">31 EOS</span>
-	  			</div>
-	  			<div class="eos-box-input-span">
-	  				<input type="text" name="" placeholder="1 EOS" :value="amount">
-	  				<p>
-	  					<span style="color: #0000ee;font-size: 13px;"> EOS</span>
-	  				</p>
-	  				<button>{{ languageCon.send }}</button>
-	  			</div>
-	  		</div>
-	  		<!-- 参与 -->
-	  		<div :class="{'eos-content':true,'active':isActive == 2}">
-	  			<br>
-	  			<div class="eos-buy-2">
-		  			<p><img class="icon-small" src="./images/hammer.png"> {{ languageCon.referee }} testtest5555</p>
-					<p><img class="icon-small" src="./images/plane.png"> {{ languageCon.push }} 20</p>
-					<p><img class="icon-small" src="./images/arrow.png"> {{ languageCon.invitation }}eos.com</p>
-					<button style="margin-top: 15px;">{{ languageCon.copy }}</button>
-				</div>
-	  		</div>
-	  	</div>
-	  	<div class="eos-title">
-	  		<div>
-	  		<span>{{ languageCon.statistics }}</span>
-	  		</div>
-	  	</div>
-		<div class="eos-box" style="padding: 20px;">
-			<div class="eos-tab-2">
-	  			<span @click="statistical(1)" :class="{'active':isActive2 == 1}">{{ languageCon.income }}</span>
-	  			<span @click="statistical(2)" :class="{'active':isActive2 == 2}">{{ languageCon.statistical }}</span>
-	  			<span @click="statistical(3)" :class="{'active':isActive2 == 3}">{{ languageCon.historical }}</span>
-	  		</div>
-	  		<!-- 我的收入 -->
-	  		<div :class="{'eos-tab2-con':true,'active':isActive2 == 1}">
-	  			<ul>
-					<li><span>{{ languageCon.dividendIncome }}</span><span class="span2">+0.2500 EOS</span></li>
-					<li><span>{{ languageCon.recommendIncome }}</span><span class="span2">+1.5186 EOS</span></li>
-					<li><span>{{ languageCon.pool }}</span><span class="span2">+0.2000 EOS</span></li>
-					<li><span>{{ languageCon.countdown }}</span><span class="span2">23 : 58 : 26</span></li>
-					<li><span>{{ languageCon.incomeLimits }}</span><span class="span2">+0.6750 EOS</span></li>
-					<li><span>{{ languageCon.notStable }}</span><span class="span2">+0.1010 EOS</span></li>
-					<li><span>{{ languageCon.settle }}</span><span class="span2">+0.3000 EOS</span></li>
-					<li><span>{{ languageCon.exitEarnings }}</span><span class="span2">+0.2000 EOS</span></li>
-	  			</ul>
-	  		</div>
-	  		<!--  统计 -->
-	  		<div :class="{'eos-tab2-con':true,'active':isActive2 == 2}">
-	  			<ul>
-					<li><span>{{ languageCon.bigPol }}</span><span class="span2">+0.2500 EOS</span></li>
-					<li><span>{{ languageCon.smallPol }}</span><span class="span2">+1.5186 EOS</span></li>
-					<li><span>{{ languageCon.ticketTate }}</span><span class="span2">+0.2000 EOS</span></li>
-					<li><span>{{ languageCon.burned }}</span><span class="span2">23 : 58 : 26</span></li>
-					<li><span>{{ languageCon.total }}</span><span class="span2">+0.6750 EOS</span></li>
-					<li><span>{{ languageCon.notStable }}</span><span class="span2">+0.1010 EOS</span></li>
-					<li><span>{{ languageCon.recommend }}</span><span class="span2">+0.3000 EOS</span></li>
-					<li><span>{{ languageCon.Team }}</span><span class="span2">+0.2000 EOS</span></li>
-					<li><span>{{ languageCon.Ambassador }}</span><span class="span2">+0.2000 EOS</span></li>
-	  			</ul>
-	  		</div>
-	  		<!-- 历史记录 -->
-	  		<div :class="{'eos-tab2-con':true,'active':isActive2 == 3,centerCon:true}">
-	  			<br>
-	  			<p>{{ languageCon.totalBig }}</p>
-	  			<p>{{ languageCon.totalSmall }}</p><br>
-				<p>{{ languageCon.totalSee }}</p>
-	  		</div>
-	  		<button @click="extract()">{{ languageCon.exitIncome }}</button>
-		</div>
-	  	<div class="eos-title">
-	  		<div>
-	  		<span>{{ languageCon.rules }}</span>
-	  		</div>
-	  	</div>
-	  	<div class="eos-box-2" v-html="languageCon.rulesContext"></div>
-	  	<br><br><br><br>
-	</div>
+
 </body>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
-	<script type="text/javascript" src="./static/eos.js"></script>
+
 </html>
