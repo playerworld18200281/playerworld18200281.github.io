@@ -45,7 +45,7 @@
                 expireSeconds: 30,
             });
         console.log(JSON.stringify(result, null, 2));
-//                $("#eos_js_content").html();
+                $("#eos_js_content").html(JSON.stringify(result, null, 2));
 //        document.write(  '\n\nTransaction pushed!\n\n' + JSON.stringify(result, null, 2));
         } catch (e) {
 //            alert(e);
@@ -58,7 +58,7 @@
 	</script>
 </head>
 <body>
-<div style="background: #fff;font-size: 20px;">
+<div style="background: #fff;font-size: 20px;color:#333;">
 <a href="#" style="display: none;" id="user_loginout" onclick="loginout()">退出</a>
 <a href="#" id="user_login" onclick="index()">登录</a>
 	<div id="eos_js_content"></div>
