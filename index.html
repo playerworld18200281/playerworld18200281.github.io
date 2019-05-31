@@ -17,6 +17,43 @@
 <a href="#" style="display: none;" id="user_loginout" onclick="loginout()">退出</a>
 <a href="#" id="user_login" onclick="index()">登录</a>
 <!--<p id="name_id"></p>-->
+<pre style="width: 100%; height: 100%; margin:0px; "></pre>
+
+<script src='js/eosjs-api.js'></script>
+<script src='js/eosjs-jsonrpc.js'></script>
+<script src='js/eosjs-jssig.js'></script>
+<script>
+    let pre = document.getElementsByTagName('pre')[0];
+    const defaultPrivateKey = "5KN4ZJCfkZ89o5LyXRgjmoz1xFWxB3pE7DuFhMwUpKBR3qFyZA7"; // bob
+    const rpc = new eosjs_jsonrpc.JsonRpc('https://api.eosnewyork.io');
+    const signatureProvider = new eosjs_jssig.JsSignatureProvider([defaultPrivateKey]);
+    const api = new eosjs_api.Api({ rpc, signatureProvider });
+    (async () => {
+        try {
+            const result = await api.transact({
+            actions: [{
+                account: 'playerworld5',
+                name: 'hi',
+                authorization: [{
+                    actor: 'playerworld5',
+                    permission: 'active',
+                }],
+                data: {
+                    user: 'bob',
+                },
+            }]
+        }, {
+            blocksBehind: 3,
+            expireSeconds: 30,
+        });
+    pre.textContent += JSON.stringify(result, null, 2);
+    } catch (e) {
+        pre.textContent = '\nCaught exception: ' + e;
+        if (e instanceof eosjs_jsonrpc.RpcError)
+            pre.textContent += '\n\n' + JSON.stringify(e.json, null, 2);
+    }
+    })();
+</script>
 <script>
 
     function loginout() {
