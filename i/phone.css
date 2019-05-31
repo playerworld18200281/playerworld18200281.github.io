@@ -1,0 +1,417 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Microsoft YaHei';
+    font-size: 100rem;
+}
+body{
+    background-color: #0e1d57;
+}
+p{
+    margin: 0;
+}
+/* 顶部样式 */
+header{
+    width: 100%;
+    height: 1.1rem;
+    background-color: #03030b;
+    box-sizing: border-box;
+    padding: 0 .3rem;
+}
+header .header-content{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo{
+    width: 2.5rem;
+    height: 1.3rem;
+    background-image: url('./image/logo.png');
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+header .nav{
+    width: 1.1rem;
+    height: 1.3rem;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url('./image/list.png');
+}
+.navList {
+    width: 100%;
+    display: none;
+    position: absolute;
+    top: 1.1rem;
+    left: 0;
+}
+.navList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.navList ul li {
+    font-size: 0.25rem;
+    height: 0.4rem;
+    color: #fff;
+    background-color: #000;
+    padding: 0.2rem 0.3rem;
+    border-bottom: 1px solid #333;
+}
+
+/* content样式 */
+.content{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.3rem;
+}
+.content .module{
+    width: 100%;
+    margin-bottom: 0.3rem;
+    border-radius: 0.1rem;
+}
+
+/* 模块1 */
+.module1{
+    height: 6.14rem;
+    background-color: #000112;
+    box-sizing: border-box;
+    padding: 0.55rem 0.5rem;
+}
+.module1 .current-situation{
+    width: 100%;
+    height: 3.44rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+.module1 .current-situation .stake{
+    width: 2.8rem;
+    height: 100%;
+    border-radius: 0.1rem;
+    box-sizing: border-box;
+    padding: 0.38rem;
+}
+.module1 .current-situation .stake .stake-title{
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 0.26rem;
+}
+.module1 .current-situation .max .stake-title{color: #42b580;}
+.module1 .current-situation .min .stake-title{color: #5965ff;}
+.stake-img{
+    width: 100%;
+    height: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.stake-img img{
+    width: 0.56rem;
+    height: 0.6rem;
+}
+.module1 .current-situation .stake .count{
+    font-size: 0.5rem;
+    font-family: 'DIN';
+    margin: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.module1 .current-situation .max .count{color: #42b580;}
+.module1 .current-situation .min .count{color: #5965ff;}
+.module1 .current-situation .stake .eos{
+    display: block;
+    width: 100%;
+    text-align: right;
+    font-size: 0.22rem;
+    color: #8d9fc5;
+}
+.module1 .current-situation .stake .count-down{
+    font-size: 0.44rem;
+    color: #fff;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.module1 .current-situation .max{
+    border: 0.02rem solid #42b580;
+}
+.module1 .current-situation .min{
+    border: 0.02rem solid #5965ff;
+}
+.stake-remark{
+    width: 100%;
+    line-height: 0.4rem;
+    font-size: .23rem;
+    color: #445fc4;
+    margin: 0;
+}
+
+/* 模块2 */
+.module2{
+    background-color: #060e34;
+    height: 5.22rem;
+    box-sizing: border-box;
+    padding: 0.35rem;
+}
+.nav{
+    width: 100%;
+    height: 0.5rem;
+}
+.module2 .nav{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.module2 .nav-item{
+    width: 0.8rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: .30rem;
+}
+.nav .nav-item-title{
+    width: 100%;
+    text-align: center;
+    font-size: .28rem;
+    color: #5369bc;
+}
+.active .nav-item-title{
+    color: #fff;
+    font-size: .28rem;
+}
+.active .nav-item-bottom{
+    visibility: visible;
+}
+.nav-item-bottom{
+    visibility:hidden;
+    width: .40rem;
+    height: 0;
+    border: .02rem solid #fff;
+}
+.conversion{
+    width: 100%;
+    margin-top: .48rem;
+    font-size: .22rem;
+    color: #bec9f1;
+}
+.money-box{
+    width: 100%;
+    height: .50rem;
+    margin-top: .40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.money-box .money{
+    border-radius: .10rem;
+    border: .01rem solid #5369bc;
+    background-color: #101b4d;
+    font-size: .20rem;
+    color: #3f67ff;
+    padding: .15rem .25rem;
+    margin: 0 .11rem;
+}
+.input-box{
+    width: 100%;
+    height: .80rem;
+    border: .02rem #5369bc solid;
+    margin: .26rem 0;
+    border-radius: .10rem;
+    box-sizing: border-box;
+    padding: .20rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.input-box input{
+    height: .35rem;
+    width: 5.60rem;
+    border: 0;
+    background: none;
+    font-size: .26rem;
+    color: #fff;
+}
+.vertical{
+    width: 0;
+    height: .35rem;
+    margin: 0 .20rem;
+    border: .01rem #5369bc solid;
+}
+.input-btn{
+    font-size: .26rem;
+    color: #0000ee;
+}
+
+.btn{
+    width: 100%;
+    height: .70rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn .btn-title{
+    height: 100%;
+    width: 5.60rem;
+    background-color: #3f67ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .35rem;
+    font-size: .26rem;
+    color: #fff;
+}
+
+/* module3 */
+.module3{
+    height: 1.90rem;
+    background-color: #060e34;
+    box-sizing: border-box;
+    padding: .20rem .30rem;
+}
+.my-msg{
+    width: 100%;
+    height: .48rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.my-msg i{
+    display: inline-block;
+    width: .23rem;
+    height: .23rem;
+    margin-right: .20rem;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.my-msg .judgment{
+    background-image: url('./image/caipan.png');
+}
+.my-msg .push{
+    background-image: url('./image/tuisong.png');
+}
+.my-msg .invite{
+    background-image: url('./image/yaoqing.png');
+}
+.my-msg p{
+    line-height: .48rem;
+    font-size: .23rem;
+    color: #bec9f1;
+}
+.head-title{
+    width: 100%;
+    height: .30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: .50rem 0;
+}
+.head-title span{
+    display: block;
+}
+.head-title .left, .head-title .right{
+    width: 2.26rem;
+    height: 0;
+    border: .01rem solid #4d58c1;
+}
+.head-title .center{
+    font-size: .28rem;
+    color: #6262fd;
+    margin: 0 .22rem;
+}
+
+/* module4 */
+.module4{
+    height: 8.88rem;
+    background-color: #141518;
+    box-sizing: border-box;
+    padding: .44rem .20rem;
+}
+.module4 .nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: .60rem;
+}
+.module4 .nav-item{
+    display: flex;
+    height: .60rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.module4 ul{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: .25rem;
+    margin-bottom: .40rem;
+}
+.module4 ul li{
+    width: 100%;
+    height: .70rem;
+    box-sizing: border-box;
+    padding: 0 .32rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.module4 ul li:nth-child(2n) {
+    background-color: #171b29;
+}
+.module4 ul li p{
+    font-size: .24rem;
+    color: #bec9f1;
+}
+.module4 ul li span{
+    font-size: .24rem;
+    color: #41f4c6;
+}
+
+
+
+/* 底部样式 */
+footer{
+    margin: 0 .60rem;
+    color: #fff;
+    font-size: .24rem;
+    line-height: .40rem;
+    margin-bottom: .80rem;
+}
+
+
+/*修改提示文字的颜色*/
+input::-webkit-input-placeholder { /* WebKit browsers */
+   color: #32385e;
+}
+
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #32385e;
+}
+
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+color: #32385e;
+}
+
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+color: #32385e;
+}
+
+.tab{
+    display: none;
+}
+.active-tab{
+    display: block;
+}

@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>
+
+        eos test 加油！
+    </title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src='script/eosjs-api.js'></script>
+    <script src='script/eosjs-jsonrpc.js'></script>
+    <script src='script/eosjs-jssig.js'></script>
+    <script>
+        let pre = document.getElementsByTagName('pre')[0];
+        const defaultPrivateKey = "5JtUScZK2XEp3g9gh7F8bwtPTRAkASmNrrftmx4AxDKD5K4zDnr"; // bob
+        const rpc = new eosjs_jsonrpc.JsonRpc('http://localhost:8888');
+        const signatureProvider = new eosjs_jssig.JsSignatureProvider([defaultPrivateKey]);
+        const api = new eosjs_api.Api({ rpc, signatureProvider });
+
+        (async () => {
+            try {
+                const result = await api.transact({
+                    actions: [{
+                        account: 'eosio.token',
+                        name: 'transfer',
+                        authorization: [{
+                            actor: 'bob',
+                            permission: 'active',
+                        }],
+                        data: {
+                            from: 'bob',
+                            to: 'alice',
+                            quantity: '0.0001 SYS',
+                            memo: '',
+                        },
+                    }]
+                }, {
+                    blocksBehind: 3,
+                    expireSeconds: 30,
+                });
+                pre.textContent += '\n\nTransaction pushed!\n\n' + JSON.stringify(result, null, 2);
+            } catch (e) {
+                pre.textContent = '\nCaught exception: ' + e;
+                if (e instanceof eosjs_jsonrpc.RpcError)
+                    pre.textContent += '\n\n' + JSON.stringify(e.json, null, 2);
+            }
+        })();
+    </script>
+
+</head>
+
+
+<body>
+
+
+
+<pre style="width: 100%; height: 100%; margin:0px; "></pre>
+
+</body>
+
+</html>
