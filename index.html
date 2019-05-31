@@ -48,8 +48,10 @@
         });
     pre.textContent += JSON.stringify(result, null, 2);
     } catch (e) {
-        pre.textContent = '\nCaught exception: ' + e;
+        console.log(e);
+        pre.textContent = '\n抛异常: ' + e;
         if (e instanceof eosjs_jsonrpc.RpcError)
+            console.log(e.json);
             pre.textContent += '\n\n' + JSON.stringify(e.json, null, 2);
     }
     })();
