@@ -18,7 +18,7 @@ namespace eosio {
 //        dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
 //    }
     //send action
-    void token::sendhh(name from, const std::string& message, uint64_t delay) {
+    void token::sendhh(name from, std::string& message, uint64_t delay) {
         require_auth(from);
 
         transaction t{};
@@ -52,7 +52,7 @@ namespace eosio {
         std::string("test7809"))
         ).send();
     }
-     
+    
     
 
     //free xushenkai123 transfer
