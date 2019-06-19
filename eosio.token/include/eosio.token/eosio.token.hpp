@@ -25,13 +25,27 @@ namespace eosio {
          using contract::contract;
 
 
-       ACTION deferred(name from, const std::string& message) {
+       ACTION deferred(name from, const std::string& message ,uint64_t delay) {
            require_auth(from);
 
            print("Printing deferred ", from, message);
+           transaction t{};
+
+           t.actions.emplace_back(
+                   permission_level(from, "active"_n),
+                   _self,
+                   "sendms"_n,
+                   std::make_tuple(from, message)
+           );
+
+           t.delay_sec = delay;
+
+           t.send(eosio::current_time_point().sec_since_epoch(), from);
+
+           print("Sent with a delay of ", delay);
        }
 
-       ACTION send(name from, const std::string& message, uint64_t delay) {
+       ACTION sendms(name from, const std::string& message, uint64_t delay) {
            require_auth(from);
 
            transaction t{};
