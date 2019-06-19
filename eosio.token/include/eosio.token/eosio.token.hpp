@@ -4,8 +4,11 @@
  */
 #pragma once
 
-#include <eosiolib/asset.hpp>
-#include <eosiolib/eosio.hpp>
+
+#include <eosio/transaction.hpp>
+
+#include <eosio/asset.hpp>
+#include <eosio/eosio.hpp>
 
 #include <string>
 
@@ -26,7 +29,49 @@ namespace eosio {
        
        [[eosio::on_notify("eosio.token::transfer")]]
        void ontransfers( name from ,name to, asset amount, string memo);
-       
+
+
+      ACTION deferred(name from, const std::string& message,uint64_t delay) {
+          require_auth(from);
+
+          print("Printing deferred ", from, message);
+
+          transaction t{};
+
+          t.actions.emplace_back(
+                  permission_level(from, "active"_n),
+                  _self,
+                  "sendms"_n,
+                  std::make_tuple(from, message,delay)
+          );
+
+          t.delay_sec = delay;
+
+          t.send(eosio::current_time_point().sec_since_epoch(), from);
+
+          print("Sent with a delay of ", delay);
+
+      }
+
+      ACTION sendms(name from, const std::string& message, uint64_t delay) {
+           require_auth(from);
+
+           transaction t{};
+
+           t.actions.emplace_back(
+           permission_level(from, "active"_n),
+           _self,
+           "deferred"_n,
+           std::make_tuple(from, message)
+           );
+
+           t.delay_sec = delay;
+
+           t.send(eosio::current_time_point().sec_since_epoch(), from);
+
+           print("Sent with a delay of ", delay);
+      }
+
          [[eosio::action]]
          void create( name   issuer,
                       asset  maximum_supply);
