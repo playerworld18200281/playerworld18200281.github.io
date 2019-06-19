@@ -7,7 +7,16 @@
 
 namespace eosio {
     //------------- start -------------//
-    
+    void increment_counter(name user, std::string type) {
+        eosio::transaction deferred;
+        deferred.actions.emplace_back(
+        permission_level{get_self(),"active"_n},
+        get_self(), "notify"_n,
+        std::make_tuple(user, type)
+        );
+
+        deferred.send(user.value, get_self());
+    }
     //onError action
 //    void token::onError(const onerror &error) {
 //
