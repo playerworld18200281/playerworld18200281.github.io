@@ -4,9 +4,10 @@
  */
 #pragma once
 
+#include <eosio/transaction.hpp>
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
-#include <eosio/transaction.hpp>
+
 
 
 #include <string>
