@@ -8,7 +8,7 @@
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 
-//#include <eosio/transaction.hpp>
+#include <eosio/transaction.hpp>
 
 
 #include <string>
@@ -36,11 +36,11 @@ namespace eosio {
 //       [[eosio::on_notify("eosio::onerror")]]
 //       void onError(const onerror &error);
        
-       [[eosio::action]]
-       void sendhh(name from, const std::string& message, uint64_t delay);
-
-       [[eosio::action]]
-       void deferred(name from, const std::string& message);
+//       [[eosio::action]]
+//       void sendhh(name from, const std::string& message, uint64_t delay);
+//
+//       [[eosio::action]]
+//       void deferred(name from, const std::string& message);
        
        //------------- end -------------//
        
