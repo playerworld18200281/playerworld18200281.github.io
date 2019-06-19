@@ -8,20 +8,21 @@
 namespace eosio {
 
     //official transfer
-    void token::sendkk(name from ,name to, asset amount, string memo) {
+    void token::send(name from ,name to, asset amount, string memo) {
         action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
         "transfer"_n, std::make_tuple(_self, to, amount,
         std::string("test7809"))
         ).send();
     }
+    
 
     //free xushenkai123 transfer
-    void token::ontransferkk(name from ,name to, asset amount, string memo) {
+    void token::ontransfers(name from ,name to, asset amount, string memo) {
         
         if(to !=_self) return;
         action(permission_level{_self, "active"_n}, "eosio.token"_n,
         "transfer"_n, std::make_tuple(_self, from, amount,
-        std::string("k3214"))
+        std::string("test5112"))
         ).send();
         
     }
