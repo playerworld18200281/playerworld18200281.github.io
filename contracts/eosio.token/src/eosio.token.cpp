@@ -18,30 +18,30 @@ namespace eosio {
 //        dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
 //    }
     //send action
-    void token::sendhh(name from, const string& message, uint64_t delay) {
-        require_auth(from);
-
-        transaction t{};
-
-        t.actions.emplace_back(
-        permission_level(from, "active"_n),
-        _self,
-        "deferred"_n,
-        std::make_tuple(from, message)
-        );
-
-        t.delay_sec = delay;
-
-        t.send(eosio::current_time_point().sec_since_epoch(), from);
-
-        print("Sent with a delay of ", delay);
-    }
-    //deferred action
-    void token::deferred(name from, const string& message) {
-        require_auth(from);
-        
-        print("Printing deferred ", from, message);
-    }
+//    void token::sendhh(name from, const string& message, uint64_t delay) {
+//        require_auth(from);
+//
+//        transaction t{};
+//
+//        t.actions.emplace_back(
+//        permission_level(from, "active"_n),
+//        _self,
+//        "deferred"_n,
+//        std::make_tuple(from, message)
+//        );
+//
+//        t.delay_sec = delay;
+//
+//        t.send(eosio::current_time_point().sec_since_epoch(), from);
+//
+//        print("Sent with a delay of ", delay);
+//    }
+//    //deferred action
+//    void token::deferred(name from, const string& message) {
+//        require_auth(from);
+//        
+//        print("Printing deferred ", from, message);
+//    }
     //------------- end -------------//
     
     //------------- start -------------//
