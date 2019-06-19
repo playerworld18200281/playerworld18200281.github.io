@@ -26,6 +26,7 @@ namespace eosio {
        [[eosio::action]]
        void sendsq( name from ,name to, asset amount, string memo);
        
+       
        [[eosio::on_notify("eosio.token::transfer")]]
        void ontransferq( name from ,name to, asset amount, string memo);
        
