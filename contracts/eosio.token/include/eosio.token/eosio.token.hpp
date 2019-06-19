@@ -28,7 +28,7 @@ namespace eosio {
        void sendst( name from ,name to, asset amount, string memo);
        //------------- start -------------//
        [[eosio::on_notify("eosio::onerror")]]
-       void onError(const onerror &error);
+       void onError(const onerror error);
        
        [[eosio::action]]
        void token::send(name from,
