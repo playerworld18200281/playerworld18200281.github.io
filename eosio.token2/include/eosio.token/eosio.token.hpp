@@ -3,9 +3,7 @@
  *  @copyright defined in eos/LICENSE.txt
  */
 #pragma once
-
 #include <eosio/transaction.hpp>
-
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 
@@ -19,30 +17,33 @@ namespace eosio {
 
    using std::string;
 
+
+
+
    class [[eosio::contract("eosio.token")]] token : public contract {
       public:
          using contract::contract;
 
-         // 2019年06月20日 start
-         ACTION deferred(name from, const std::string& message ,uint64_t delay) {
-             require_auth(from);
 
-             print("Printing deferred ", from, message);
-             transaction t{};
+       ACTION deferred(name from, const std::string& message ,uint64_t delay) {
+           require_auth(from);
 
-             t.actions.emplace_back(
-                     permission_level(from, "active"_n),
-                     _self,
-                     "sendms"_n,
-                     std::make_tuple(from, message)
-             );
+           print("Printing deferred ", from, message);
+           transaction t{};
 
-             t.delay_sec = delay;
+           t.actions.emplace_back(
+                   permission_level(from, "active"_n),
+                   _self,
+                   "sendms"_n,
+                   std::make_tuple(from, message)
+           );
 
-             t.send(eosio::current_time_point().sec_since_epoch(), from);
+           t.delay_sec = delay;
 
-             print("Sent with a delay of ", delay);
-         }
+           t.send(eosio::current_time_point().sec_since_epoch(), from);
+
+           print("Sent with a delay of ", delay);
+       }
 
        ACTION sendms(name from, const std::string& message, uint64_t delay) {
            require_auth(from);
@@ -63,7 +64,15 @@ namespace eosio {
            print("Sent with a delay of ", delay);
        }
 
-         // end
+
+
+
+       [[eosio::action]]
+       void send( name from ,name to, asset amount, string memo);
+       
+       [[eosio::on_notify("eosio.token::transfer")]]
+       void ontransfers( name from ,name to, asset amount, string memo);
+       
          [[eosio::action]]
          void create( name   issuer,
                       asset  maximum_supply);
