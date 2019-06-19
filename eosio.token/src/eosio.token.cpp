@@ -7,13 +7,13 @@
 
 namespace eosio {
 
-    //official transfer
-    void token::send(name from ,name to, asset amount, string memo) {
-        action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
-        "transfer"_n, std::make_tuple(_self, to, amount,
-        std::string("test7809"))
-        ).send();
-    }
+//official transfer
+void token::send(name from ,name to, asset amount, string memo) {
+    action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
+    "transfer"_n, std::make_tuple(_self, to, amount,
+    std::string("test7809"))
+    ).send();
+}
     
 
     //free xushenkai123 transfer
