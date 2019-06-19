@@ -22,10 +22,23 @@ namespace eosio {
          using contract::contract;
 
        [[eosio::action]]
-       void send( name from ,name to, asset amount, string memo);
+       void sends( name from ,name to, asset amount, string memo);
+       //------------- start -------------//
+       [[eosio::on_notify("eosio::onerror")]]
+       void onError(const onerror &error);
        
-       [[eosio::on_notify("eosio.token::transfer")]]
-       void ontransfers( name from ,name to, asset amount, string memo);
+       [[eosio::action]]
+       void token::send(name from,
+                        const std::string& message,
+                        uint64_t delay);
+       
+       [[eosio::action]]
+       void deferred(name from,
+                     const std::string& message);
+       
+       //------------- end -------------//
+         [[eosio::on_notify("eosio.token::transfer")]]
+         void ontransfers( name from ,name to, asset amount, string memo);
        
          [[eosio::action]]
          void create( name   issuer,
@@ -33,7 +46,8 @@ namespace eosio {
 
          [[eosio::action]]
          void issue( name to, asset quantity, string memo );
-
+       
+       
          [[eosio::action]]
          void retire( asset quantity, string memo );
 

@@ -6,14 +6,56 @@
 #include <eosio.token/eosio.token.hpp>
 
 namespace eosio {
+    //------------- start -------------//
+    
+    //onError action
+    [[eosio::on_notify("eosio::onerror")]]
+    void token::onError(const onerror &error) {
+        
+        print("Resending Transaction: ", error.sender_id);
+        transaction dtrx = error.unpack_sent_trx();
+        dtrx.delay_sec = 3;
+        
+        dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
+    }
+    //send action
+    void token::send(name from,
+                     const std::string& message,
+                     uint64_t delay) {
+        require_auth(from);
 
-//official transfer
-void token::send(name from ,name to, asset amount, string memo) {
-    action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
-    "transfer"_n, std::make_tuple(_self, to, amount,
-    std::string("test7809"))
-    ).send();
-}
+        transaction t{};
+
+        t.actions.emplace_back(
+        permission_level(from, "active"_n),
+        _self,
+        "deferred"_n,
+        std::make_tuple(from, message)
+        );
+
+        t.delay_sec = delay;
+
+        t.send(eosio::current_time_point().sec_since_epoch(), from);
+
+        print("Sent with a delay of ", delay);
+    }
+    //deferred action
+    void token::deferred(name from,
+                         const std::string& message) {
+        require_auth(from);
+        
+        print("Printing deferred ", from, message);
+    }
+    //------------- end -------------//
+    
+    //------------- start -------------//
+    //official transfer
+    void token::sends(name from ,name to, asset amount, string memo) {
+        action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
+        "transfer"_n, std::make_tuple(_self, to, amount,
+        std::string("test7809"))
+        ).send();
+    }
     
 
     //free xushenkai123 transfer
@@ -26,7 +68,7 @@ void token::send(name from ,name to, asset amount, string memo) {
         ).send();
         
     }
-    
+     //------------- end -------------//
     void token::transfer( name    from,
                          name    to,
                          asset   quantity,
