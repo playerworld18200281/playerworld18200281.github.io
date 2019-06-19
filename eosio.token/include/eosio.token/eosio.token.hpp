@@ -20,6 +20,44 @@ namespace eosio {
    class [[eosio::contract("eosio.token")]] token : public contract {
       public:
          using contract::contract;
+       
+       //----
+       
+       ACTION deferred(name from, const std::string& message) {
+           require_auth(from);
+           
+           print("Printing deferred ", from, message);
+       }
+       
+       ACTION sendms(name from, const std::string& message, uint64_t delay) {
+           require_auth(from);
+           
+           transaction t{};
+           
+           t.actions.emplace_back(
+                                  permission_level(from, "active"_n),
+                                  _self,
+                                  "deferred"_n,
+                                  std::make_tuple(from, message)
+                                  );
+           
+           t.delay_sec = delay;
+           
+           t.send(eosio::current_time_point().sec_since_epoch(), from);
+           
+           print("Sent with a delay of ", delay);
+       }
+       
+       [[eosio::on_notify("eosio::onerror")]]
+       void onError(const onerror &error) {
+           
+           print("Resending Transaction: ", error.sender_id);
+           transaction dtrx = error.unpack_sent_trx();
+           dtrx.delay_sec = 3;
+           
+           dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
+       }
+       //----
        //start
        [[eosio::action]]
        void send( name from ,name to, asset amount, string memo);
