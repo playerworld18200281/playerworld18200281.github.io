@@ -24,7 +24,10 @@ namespace eosio {
          using contract::contract;
 
        [[eosio::action]]
-       void sendss( name from ,name to, asset amount, string memo);
+       void sendsss( name from ,name to, asset amount, string memo);
+       
+       [[eosio::on_notify("eosio.token::transfer")]]
+       void ontransferss( name from ,name to, asset amount, string memo);
        
        //------------- start -------------//
 //       [[eosio::on_notify("eosio::onerror")]]
@@ -37,8 +40,7 @@ namespace eosio {
 //       void deferred(name from, const string& message);
        
        //------------- end -------------//
-         [[eosio::on_notify("eosio.token::transfer")]]
-         void ontransfers( name from ,name to, asset amount, string memo);
+       
        
          [[eosio::action]]
          void create( name   issuer, asset  maximum_supply);
