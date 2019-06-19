@@ -9,7 +9,6 @@ namespace eosio {
     //------------- start -------------//
     
     //onError action
-    [[eosio::on_notify("eosio::onerror")]]
     void token::onError(const onerror &error) {
         
         print("Resending Transaction: ", error.sender_id);
