@@ -3,7 +3,7 @@
  *  @copyright defined in eos/LICENSE.txt
  */
 #pragma once
-
+#include <eosio/transaction.hpp>
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 
