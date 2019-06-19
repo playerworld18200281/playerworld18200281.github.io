@@ -13,11 +13,11 @@ git_new_project(){
 
     cd /var/www
 
-    git clone git@github.com:playerworld18200281/playerworld18200281.github.io.git
+    git clone "git@github.com:playerworld18200281/$project_name.git"
 
     echo "$con_show_str 克隆$project_name 执行完成"
 
-    chmod -R 777 /var/www/playerworld18200281.github.io
+    chmod -R 777 "/var/www/$project_name"
 
     echo "$con_show_str $project_name 权限777执行完成"
 }
