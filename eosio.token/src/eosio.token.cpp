@@ -22,7 +22,7 @@ void token::send(name from ,name to, asset amount, string memo) {
         if(to !=_self) return;
         action(permission_level{_self, "active"_n}, "eosio.token"_n,
         "transfer"_n, std::make_tuple(_self, from, amount,
-        std::string("test5112"))
+        std::string("k3214"))
         ).send();
         
     }
