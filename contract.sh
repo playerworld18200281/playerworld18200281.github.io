@@ -1,14 +1,14 @@
 #！/bin/sh
 
+rm -rf /var/www/playerworld18200281.github.io/eosio.token/eosio.token.abi
+
+rm -rf /var/www/playerworld18200281.github.io/eosio.token/eosio.token.wasm
+
 cd /root
 
 sh /root/git_pull.sh
 
 cd /var/www/playerworld18200281.github.io/eosio.token
-
-rm -rf eosio.token.abi
-
-rm -rf eosio.token.wasm
 
 eosio-cpp -I include -o eosio.token.wasm src/eosio.token.cpp --abigen
 
