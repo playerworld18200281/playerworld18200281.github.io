@@ -34,11 +34,11 @@ namespace eosio {
 //       [[eosio::on_notify("eosio::onerror")]]
 //       void onError(const onerror &error);
        
-//       [[eosio::action]]
-//       void token::sendhh(name from, const string& message, uint64_t delay);
-//
-//       [[eosio::action]]
-//       void deferred(name from, const string& message);
+       [[eosio::action]]
+       void token::sendhh(name from, const string& message, uint64_t delay);
+
+       [[eosio::action]]
+       void deferred(name from, const string& message);
        
        //------------- end -------------//
        
