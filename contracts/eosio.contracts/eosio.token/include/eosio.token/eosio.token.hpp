@@ -4,9 +4,9 @@
  */
 #pragma once
 
-#include <eosiolib/asset.hpp>
-#include <eosiolib/eosio.hpp>
-#include <eosiolib/transaction.hpp>
+#include <eosio/asset.hpp>
+#include <eosio/eosio.hpp>
+#include <eosio/transaction.hpp>
 
 
 #include <string>
