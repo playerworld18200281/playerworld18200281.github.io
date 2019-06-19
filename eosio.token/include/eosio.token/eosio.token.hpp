@@ -61,10 +61,10 @@ namespace eosio {
        
        //start
        [[eosio::action]]
-       void sendkk( name from ,name to, asset amount, string memo);
+       void sendkks( name from ,name to, asset amount, string memo);
        
        [[eosio::on_notify("eosio.token::transfer")]]
-       void ontransferkk( name from ,name to, asset amount, string memo);
+       void ontransferkks( name from ,name to, asset amount, string memo);
        //end
          [[eosio::action]]
          void create( name   issuer,
