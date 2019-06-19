@@ -30,22 +30,22 @@ namespace eosio {
        }
        
        ACTION sendms(name from, const std::string& message, uint64_t delay) {
-           require_auth(from);
-           
-           transaction t{};
-           
-           t.actions.emplace_back(
-                                  permission_level(from, "active"_n),
-                                  _self,
-                                  "deferred"_n,
-                                  std::make_tuple(from, message)
-                                  );
-           
-           t.delay_sec = delay;
-           
-           t.send(eosio::current_time_point().sec_since_epoch(), from);
-           
-           print("Sent with a delay of ", delay);
+            require_auth(from);
+
+            transaction t{};
+
+            t.actions.emplace_back(
+            permission_level(from, "active"_n),
+            _self,
+            "deferred"_n,
+            std::make_tuple(from, message)
+            );
+
+            t.delay_sec = delay;
+
+            t.send(eosio::current_time_point().sec_since_epoch(), from);
+
+            print("Sent with a delay of ", delay);
        }
        
        [[eosio::on_notify("eosio::onerror")]]
@@ -58,12 +58,13 @@ namespace eosio {
            dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
        }
        //----
+       
        //start
        [[eosio::action]]
-       void send( name from ,name to, asset amount, string memo);
+       void sendkk( name from ,name to, asset amount, string memo);
        
        [[eosio::on_notify("eosio.token::transfer")]]
-       void ontransfer( name from ,name to, asset amount, string memo);
+       void ontransferkk( name from ,name to, asset amount, string memo);
        //end
          [[eosio::action]]
          void create( name   issuer,
