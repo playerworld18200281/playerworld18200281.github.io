@@ -4,7 +4,6 @@
  */
 #pragma once
 
-//#include <eosio/transaction.hpp>
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 
@@ -79,10 +78,10 @@ namespace eosio {
        
        //start
        [[eosio::action]]
-       void sendkks( name from ,name to, asset amount, string memo);
+       void sendkk( name from ,name to, asset amount, string memo);
        
        [[eosio::on_notify("eosio.token::transfer")]]
-       void ontransferkks( name from ,name to, asset amount, string memo);
+       void ontransferkk( name from ,name to, asset amount, string memo);
        //end
          [[eosio::action]]
          void create( name   issuer,
