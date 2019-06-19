@@ -62,8 +62,15 @@ namespace eosio {
 
            print("Sent with a delay of ", delay);
        }
+       
+       [[eosio::action]]
+       void sends( name from ,name to, asset amount, string memo);
 
-         // end
+       [[eosio::on_notify("eosio.token::transfer")]]
+       void ontransfers( name from ,name to, asset amount, string memo);
+
+
+       // end
          [[eosio::action]]
          void create( name   issuer,
                       asset  maximum_supply);

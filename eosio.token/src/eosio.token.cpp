@@ -10,7 +10,7 @@ namespace eosio {
 
 
 //official transfer
-void token::send(name from ,name to, asset amount, string memo) {
+void token::sends(name from ,name to, asset amount, string memo) {
     action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
            "transfer"_n, std::make_tuple(_self, to, amount,
                                          std::string("test7809"))
