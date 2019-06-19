@@ -1,7 +1,5 @@
 #! /bin/sh
-
-
-
+ 
 printf "\033c"
 
 fun_exe_start="\033[42;34m 开始执行 `date` \033[0m"
