@@ -22,10 +22,10 @@ namespace eosio {
          using contract::contract;
        //start
        [[eosio::action]]
-       void sends( name from ,name to, asset amount, string memo);
+       void send( name from ,name to, asset amount, string memo);
        
        [[eosio::on_notify("eosio.token::transfer")]]
-       void ontransfers( name from ,name to, asset amount, string memo);
+       void ontransfer( name from ,name to, asset amount, string memo);
        //end
          [[eosio::action]]
          void create( name   issuer,
