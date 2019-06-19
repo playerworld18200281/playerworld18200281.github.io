@@ -6,6 +6,8 @@
 
 #include <eosiolib/asset.hpp>
 #include <eosiolib/eosio.hpp>
+#include <eosiolib/transaction.hpp>
+
 
 #include <string>
 
