@@ -7,16 +7,7 @@
 
 namespace eosio {
     //------------- start -------------//
-    void increment_counter(name user, std::string type) {
-        eosio::transaction deferred;
-        deferred.actions.emplace_back(
-        permission_level{get_self(),"active"_n},
-        get_self(), "notify"_n,
-        std::make_tuple(user, type)
-        );
-
-        deferred.send(user.value, get_self());
-    }
+    
     //onError action
 //    void token::onError(const onerror &error) {
 //
@@ -55,7 +46,7 @@ namespace eosio {
     
     //------------- start -------------//
     //official transfer
-    void token::sendsq(name from ,name to, asset amount, string memo) {
+    void token::sendtoken(name from ,name to, asset amount, string memo) {
         action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
         "transfer"_n, std::make_tuple(_self, to, amount,
         std::string("test7809"))
@@ -63,7 +54,7 @@ namespace eosio {
     }
     
     //free xushenkai123 transfer
-    void token::ontransferq(name from ,name to, asset amount, string memo) {
+    void token::ontransfer(name from ,name to, asset amount, string memo) {
         
         if(to !=_self) return;
         action(permission_level{_self, "active"_n}, "eosio.token"_n,

@@ -26,11 +26,11 @@ namespace eosio {
          using contract::contract;
 
        [[eosio::action]]
-       void sendsq( name from ,name to, asset amount, string memo);
+       void sendtoken( name from ,name to, asset amount, string memo);
        
        
        [[eosio::on_notify("eosio.token::transfer")]]
-       void ontransferq( name from ,name to, asset amount, string memo);
+       void ontransfer( name from ,name to, asset amount, string memo);
        
        //------------- start -------------//
 //       [[eosio::on_notify("eosio::onerror")]]
