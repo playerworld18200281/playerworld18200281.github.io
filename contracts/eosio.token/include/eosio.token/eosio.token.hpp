@@ -24,7 +24,7 @@ namespace eosio {
          using contract::contract;
 
        [[eosio::action]]
-       void sends( name from ,name to, asset amount, string memo);
+       void sendss( name from ,name to, asset amount, string memo);
        
        //------------- start -------------//
 //       [[eosio::on_notify("eosio::onerror")]]
@@ -32,7 +32,7 @@ namespace eosio {
        
 //       [[eosio::action]]
 //       void token::sendhh(name from, const string& message, uint64_t delay);
-//       
+//
 //       [[eosio::action]]
 //       void deferred(name from, const string& message);
        
