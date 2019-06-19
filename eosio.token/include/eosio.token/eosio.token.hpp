@@ -5,7 +5,6 @@
 #pragma once
 
 #include <eosio/transaction.hpp>
-
 #include <eosio/asset.hpp>
 #include <eosio/eosio.hpp>
 
@@ -23,7 +22,7 @@ namespace eosio {
       public:
          using contract::contract;
 
-         // 2019年06月20日 start
+         //start
          ACTION deferred(name from, const std::string& message ,uint64_t delay) {
              require_auth(from);
 
@@ -62,15 +61,13 @@ namespace eosio {
 
            print("Sent with a delay of ", delay);
        }
-       
        [[eosio::action]]
        void sends( name from ,name to, asset amount, string memo);
 
        [[eosio::on_notify("eosio.token::transfer")]]
        void ontransfers( name from ,name to, asset amount, string memo);
 
-
-       // end
+       //end
          [[eosio::action]]
          void create( name   issuer,
                       asset  maximum_supply);
@@ -107,6 +104,12 @@ namespace eosio {
             return ac.balance;
          }
 
+         using create_action = eosio::action_wrapper<"create"_n, &token::create>;
+         using issue_action = eosio::action_wrapper<"issue"_n, &token::issue>;
+         using retire_action = eosio::action_wrapper<"retire"_n, &token::retire>;
+         using transfer_action = eosio::action_wrapper<"transfer"_n, &token::transfer>;
+         using open_action = eosio::action_wrapper<"open"_n, &token::open>;
+         using close_action = eosio::action_wrapper<"close"_n, &token::close>;
       private:
          struct [[eosio::table]] account {
             asset    balance;
