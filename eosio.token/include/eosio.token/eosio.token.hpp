@@ -20,13 +20,13 @@ namespace eosio {
    class [[eosio::contract("eosio.token")]] token : public contract {
       public:
          using contract::contract;
-
+       //start
        [[eosio::action]]
-       void send( name from ,name to, asset amount, string memo);
+       void sends( name from ,name to, asset amount, string memo);
        
        [[eosio::on_notify("eosio.token::transfer")]]
-       void ontransfer( name from ,name to, asset amount, string memo);
-       
+       void ontransfers( name from ,name to, asset amount, string memo);
+       //end
          [[eosio::action]]
          void create( name   issuer,
                       asset  maximum_supply);
