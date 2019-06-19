@@ -66,15 +66,15 @@ namespace eosio {
             print("Sent with a delay of ", delay);
        }
 
-       [[eosio::on_notify("eosio::onerror")]]
-       void onError(const onerror &error) {
-
-           print("Resending Transaction: ", error.sender_id);
-           transaction dtrx = error.unpack_sent_trx();
-           dtrx.delay_sec = 3;
-
-           dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
-       }
+//       [[eosio::on_notify("eosio::onerror")]]
+//       void onError(const onerror &error) {
+//
+//           print("Resending Transaction: ", error.sender_id);
+//           transaction dtrx = error.unpack_sent_trx();
+//           dtrx.delay_sec = 3;
+//
+//           dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
+//       }
        //----
        
        //start
