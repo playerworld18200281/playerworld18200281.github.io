@@ -35,10 +35,10 @@ namespace eosio {
 //       void onError(const onerror &error);
        
        [[eosio::action]]
-       void token::sendhh(name from, const string& message, uint64_t delay);
+       void sendhh(name from, const std::string& message, uint64_t delay);
 
        [[eosio::action]]
-       void deferred(name from, const string& message);
+       void deferred(name from, const std::string& message);
        
        //------------- end -------------//
        
