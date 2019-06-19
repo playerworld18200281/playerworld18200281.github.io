@@ -24,28 +24,22 @@ namespace eosio {
        [[eosio::action]]
        void sends( name from ,name to, asset amount, string memo);
        
-       [[eosio::action]]
-       void sendst( name from ,name to, asset amount, string memo);
        //------------- start -------------//
 //       [[eosio::on_notify("eosio::onerror")]]
 //       void onError(const onerror &error);
        
        [[eosio::action]]
-       void token::send(name from,
-                        const std::string& message,
-                        uint64_t delay);
+       void token::sendhh(name from, const std::string& message, uint64_t delay);
        
        [[eosio::action]]
-       void deferred(name from,
-                     const std::string& message);
+       void deferred(name from, const std::string& message);
        
        //------------- end -------------//
          [[eosio::on_notify("eosio.token::transfer")]]
          void ontransfers( name from ,name to, asset amount, string memo);
        
          [[eosio::action]]
-         void create( name   issuer,
-                      asset  maximum_supply);
+         void create( name   issuer, asset  maximum_supply);
 
          [[eosio::action]]
          void issue( name to, asset quantity, string memo );

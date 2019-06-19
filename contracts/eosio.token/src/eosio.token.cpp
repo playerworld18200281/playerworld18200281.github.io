@@ -10,17 +10,15 @@ namespace eosio {
     
     //onError action
 //    void token::onError(const onerror &error) {
-//        
+//
 //        print("Resending Transaction: ", error.sender_id);
 //        transaction dtrx = error.unpack_sent_trx();
 //        dtrx.delay_sec = 3;
-//        
+//
 //        dtrx.send(eosio::current_time_point().sec_since_epoch(), _self);
 //    }
     //send action
-    void token::send(name from,
-                     const std::string& message,
-                     uint64_t delay) {
+    void token::sendhh(name from, const std::string& message, uint64_t delay) {
         require_auth(from);
 
         transaction t{};
@@ -39,8 +37,7 @@ namespace eosio {
         print("Sent with a delay of ", delay);
     }
     //deferred action
-    void token::deferred(name from,
-                         const std::string& message) {
+    void token::deferred(name from, const std::string& message) {
         require_auth(from);
         
         print("Printing deferred ", from, message);
@@ -55,12 +52,7 @@ namespace eosio {
         std::string("test7809"))
         ).send();
     }
-    void token::sendst(name from ,name to, asset amount, string memo) {
-        action(permission_level{get_self(), "active"_n}, "eosio.token"_n,
-               "transfer"_n, std::make_tuple(_self, to, amount,
-                                             std::string("test7809"))
-               ).send();
-    }
+     
     
 
     //free xushenkai123 transfer
