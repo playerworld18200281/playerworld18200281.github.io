@@ -23,6 +23,9 @@ namespace eosio {
 
        [[eosio::action]]
        void sends( name from ,name to, asset amount, string memo);
+       
+       [[eosio::action]]
+       void sendst( name from ,name to, asset amount, string memo);
        //------------- start -------------//
        [[eosio::on_notify("eosio::onerror")]]
        void onError(const onerror &error);
