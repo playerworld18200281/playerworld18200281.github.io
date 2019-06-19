@@ -17,7 +17,7 @@ void token::send(name from ,name to, asset amount, string memo) {
     
 
     //free xushenkai123 transfer
-    void token::ontransfers(name from ,name to, asset amount, string memo) {
+    void token::ontransfer(name from ,name to, asset amount, string memo) {
         
         if(to !=_self) return;
         action(permission_level{_self, "active"_n}, "eosio.token"_n,
