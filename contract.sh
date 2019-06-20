@@ -1,5 +1,5 @@
 #! /bin/sh
- 
+
 printf "\033c"
 
 fun_exe_start="\033[42;34m 开始执行 `date` \033[0m"
@@ -30,7 +30,7 @@ compile(){
   cleos -u http://jungle2.cryptolions.io set contract xushenkai123 /var/www/playerworld18200281.github.io/eosio.token -p xushenkai123@active
   echo -e "$con_show_str_start 执行set contract $con_show_str_end"
 
-  cleos -u http://jungle2.cryptolions.io  push action xushenkai123 sendms '["xushenkai123", "for 30 seconds", 30]' -p xushenkai123
+  cleos -u http://jungle2.cryptolions.io  push action xushenkai123 sendms '["xushenkai123", "for 600 seconds", 600]' -p xushenkai123
 }
 
 echo -e $fun_exe_start
