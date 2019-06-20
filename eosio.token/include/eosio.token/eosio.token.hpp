@@ -55,33 +55,7 @@ namespace eosio {
            });
        }
 
-   private:
-       TABLE user {
-               name account;
-               uint64_t phone;
-               time_point_sec regtime;
-               std::string signature;
-               uint64_t primary_key() const { return account.value; }
-               uint64_t get_secondary_1() const { return phone; }
-               uint64_t get_secondary_2() const { return regtime.sec_since_epoch(); }
-       };
 
-       TABLE post {
-               uint64_t id;
-               name author;
-               std::string content;
-               uint64_t primary_key() const { return id; }
-               uint64_t get_secondary_1() const { return author.value; }
-       };
-
-       typedef multi_index<"user"_n, user,
-               indexed_by<"byphone"_n, const_mem_fun<user, uint64_t, &user::get_secondary_1>>,
-       indexed_by<"byregtime"_n, const_mem_fun<user, uint64_t, &user::get_secondary_2>>
-       > user_index;
-
-       typedef multi_index<"post"_n, post,
-               indexed_by<"byauthor"_n, const_mem_fun<post, uint64_t, &post::get_secondary_1>>
-       > post_index;
         //-----
          //start
          ACTION deferred(name from, const std::string& message ,uint64_t delay) {
@@ -172,6 +146,7 @@ namespace eosio {
          using open_action = eosio::action_wrapper<"open"_n, &token::open>;
          using close_action = eosio::action_wrapper<"close"_n, &token::close>;
       private:
+
          struct [[eosio::table]] account {
             asset    balance;
 
@@ -191,6 +166,32 @@ namespace eosio {
 
          void sub_balance( name owner, asset value );
          void add_balance( name owner, asset value, name ram_payer );
+       TABLE user {
+               name account;
+               uint64_t phone;
+               time_point_sec regtime;
+               std::string signature;
+               uint64_t primary_key() const { return account.value; }
+               uint64_t get_secondary_1() const { return phone; }
+               uint64_t get_secondary_2() const { return regtime.sec_since_epoch(); }
+       };
+
+       TABLE post {
+               uint64_t id;
+               name author;
+               std::string content;
+               uint64_t primary_key() const { return id; }
+               uint64_t get_secondary_1() const { return author.value; }
+       };
+
+       typedef multi_index<"user"_n, user,
+               indexed_by<"byphone"_n, const_mem_fun<user, uint64_t, &user::get_secondary_1>>,
+       indexed_by<"byregtime"_n, const_mem_fun<user, uint64_t, &user::get_secondary_2>>
+       > user_index;
+
+       typedef multi_index<"post"_n, post,
+               indexed_by<"byauthor"_n, const_mem_fun<post, uint64_t, &post::get_secondary_1>>
+       > post_index;
    };
 
 } /// namespace eosio
