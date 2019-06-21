@@ -10,7 +10,7 @@ project_name="playerworld18200281.github.io"
 
 git_new_project(){
     rm -rf "/var/www/$project_name"
-    echo -e "$con_show_str_start 删除playerworld18200281.github.io $con_show_str_end"
+    echo -e "$con_show_str_start 删除$project_name $con_show_str_end"
     cd /var/www
     git clone git@github.com:playerworld18200281/playerworld18200281.github.io.git
     echo -e "$con_show_str_start 克隆$project_name $con_show_str_end"
@@ -34,8 +34,6 @@ compile(){
 }
 
 echo -e $fun_exe_start
-
-
 
 git_new_project
 compile

@@ -166,6 +166,7 @@ namespace eosio {
 
          void sub_balance( name owner, asset value );
          void add_balance( name owner, asset value, name ram_payer );
+         ///
        TABLE user {
                name account;
                uint64_t phone;
@@ -192,6 +193,7 @@ namespace eosio {
        typedef multi_index<"post"_n, post,
                indexed_by<"byauthor"_n, const_mem_fun<post, uint64_t, &post::get_secondary_1>>
        > post_index;
+       ///
    };
 
 } /// namespace eosio
