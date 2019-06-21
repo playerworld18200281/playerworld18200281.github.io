@@ -2,6 +2,7 @@
 
 printf "\033c"
 
+cd "/opt/www"
 fun_exe_start="\033[42;34m 开始执行 `date` \033[0m"
 fun_exe_end="\033[42;34m 结束执行 `date` \033[0m"
 con_show_str_start="\033[46;30m【"
@@ -11,7 +12,6 @@ project_name="playerworld18200281.github.io"
 git_new_project(){
     rm -rf "/opt/www/$project_name"
     echo -e "$con_show_str_start 删除playerworld18200281.github.io $con_show_str_end"
-    cd "/opt/www"
     git clone git@github.com:playerworld18200281/playerworld18200281.github.io.git
     echo -e "$con_show_str_start 克隆$project_name $con_show_str_end"
     chmod -R 777 "/opt/www/$project_name"
