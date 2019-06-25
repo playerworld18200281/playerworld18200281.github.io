@@ -2,6 +2,17 @@
 
 printf "\033c"
 
+
+if  [ ! -n "$1" ] ;then
+    echo "you have not input a word!"
+else
+    echo "the word you input is $1"
+fi
+
+
+
+exit
+
 cd "/opt/www"
 fun_exe_start="\033[42;34m 开始执行 `date` \033[0m"
 fun_exe_end="\033[42;34m 结束执行 `date` \033[0m"
@@ -41,6 +52,7 @@ compile(){
 }
 
 echo -e $fun_exe_start
+
 git_pull
 compile
 echo -e $fun_exe_end
