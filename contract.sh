@@ -40,6 +40,7 @@ compile(){
   cleos -u http://jungle2.cryptolions.io set contract xushenkai123 /opt/www/playerworld18200281.github.io/eosio.token -p xushenkai123@active
   echo -e "$con_show_str_start 执行set contract $con_show_str_end"
 
+  echo -e "$con_show_str_start sendms $con_show_str_end"
   cleos -u http://jungle2.cryptolions.io  push action xushenkai123 sendms '["xushenkai123", "for 600 seconds", 600]' -p xushenkai123
 }
 
