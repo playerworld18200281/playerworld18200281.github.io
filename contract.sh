@@ -3,8 +3,11 @@
 printf "\033c"
 
 
-if  [ ! -n "$1" ] ;then
+if  [ ! -n "$1" && "$1"=="pull" ] ;then
     echo "you have not input a word!"
+
+elif [ ! -n "$1" && "$1"=="com" ] ; then
+    echo "the word you input is $1"
 else
     echo "the word you input is $1"
 fi
