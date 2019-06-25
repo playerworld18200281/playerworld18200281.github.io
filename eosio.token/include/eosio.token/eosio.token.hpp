@@ -33,11 +33,11 @@ namespace eosio {
        ACTION adduser(name account, uint64_t phone, std::string signature){
            require_auth(account);
            user_index users(get_self(), get_first_receiver().value);
-           users.emplace(account, [&](auto& userg){
-               userg.account = account;
-               userg.phone = phone;
-               userg.regtime = time_point_sec(current_time_point());
-               userg.signature = signature;
+           users.emplace(account, [&](auto& user){
+               user.account = account;
+               user.phone = phone;
+               user.regtime = time_point_sec(current_time_point());
+               user.signature = signature;
            });
        }
 
