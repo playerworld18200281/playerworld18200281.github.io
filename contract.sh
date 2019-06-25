@@ -3,14 +3,7 @@
 printf "\033c"
 
 
-if  [ ! -n "$1" && "$1"=="pull" ]
-then
-    echo "you have not input a word!"
-fi
 
-
-
-exit
 
 cd "/opt/www"
 fun_exe_start="\033[42;34m 开始执行 `date` \033[0m"
