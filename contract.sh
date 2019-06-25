@@ -49,7 +49,12 @@ git_pull
 compile
 echo -e $fun_exe_end
 
+echo -e "$con_show_str_start 执行addUser $con_show_str_end"
+cleos -u http://jungle2.cryptolions.io push action xushenkai123 adduser '["xushenkai123", 13888888888, "im bob"]' -p xushenkai123@active
 
+
+echo -e "$con_show_str_start 执行get table $con_show_str_end"
+cleos -u http://jungle2.cryptolions.io get table xushenkai123 xushenkai123 user
 
 
 
