@@ -29,27 +29,7 @@ namespace eosio {
            check(users.get_scope() == name{"test"}.value, "Scopes don't match");
            print("match");
        }
-       ACTION reguser(name account){
-            user_index users(get_self(), get_first_receiver().value);
-            users.emplace(get_self(), [&](auto& user){
-                user.account = account;
-                user.account_type = account.value;
-                user.parent = 1;
-                user.regtime = time_point_sec(current_time_point());
 
-//                user.leijitouru               =0;//累计投入
-//                user.leijitixian              =0; //累计提现
-//                user.leijishouyi              =0;//累计收益
-//                user.weitixianshouyi          =0;//未提现收益
-//                user.tuijianjiangli           =0;  //推荐奖励
-//                user.dajiangchileijishouyi    =0;//大奖池累计收益
-//                user.xiaojiangchileijishouyi  =0;//小奖池累计收益
-//                user.zhituishuliang           =0;  //直推数量
-//                user.erdaishuliang            =0;   //二代数量
-//                user.sandaishuliang           =0; //三代数量
-
-            });
-       }
        ACTION adduser(name account, uint64_t phone, std::string signature){
            require_auth(account);
            user_index users(get_self(), get_first_receiver().value);
