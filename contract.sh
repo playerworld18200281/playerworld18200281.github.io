@@ -18,6 +18,13 @@ git_new_project(){
     echo -e "$con_show_str_start 给$project_name 权限777$con_show_str_end"
 }
 
+git_pull(){
+    cd "/opt/www/$project_name"
+    git add .
+    git commit -m 'linux add .'
+    git pull
+}
+
 compile(){
   cd /opt/www/playerworld18200281.github.io/eosio.token
   echo -e "$con_show_str_start 进入$project_name /eosio.token文件夹 $con_show_str_end"
@@ -34,7 +41,7 @@ compile(){
 }
 
 echo -e $fun_exe_start
-
+git_pull
 compile
 echo -e $fun_exe_end
 
