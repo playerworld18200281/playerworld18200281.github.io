@@ -35,9 +35,6 @@ compile(){
 
 echo -e $fun_exe_start
 
-
-
-git_new_project
 compile
 echo -e $fun_exe_end
 
