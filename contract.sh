@@ -45,14 +45,25 @@ compile(){
 }
 
 contract(){
-    echo -e "$con_show_str_start 执行addUser $con_show_str_end"
+
+
+
+    echo -e "$con_show_str_start 执行testcheck $con_show_str_end"
+    cleos -u http://jungle2.cryptolions.io push action xushenkai123 testcheck '[""]' -p xushenkai123@active
+
+    echo -e "$con_show_str_start 执行adduser $con_show_str_end"
     cleos -u http://jungle2.cryptolions.io push action xushenkai123 adduser '["xushenkai123", 13888888888, "im bob"]' -p xushenkai123@active
 
 
-    echo -e "$con_show_str_start 执行get table $con_show_str_end"
+    echo -e "$con_show_str_start 执行get table user $con_show_str_end"
     cleos -u http://jungle2.cryptolions.io get table xushenkai123 xushenkai123 user
 
 
+    echo -e "$con_show_str_start 执行addpost $con_show_str_end"
+    cleos -u http://jungle2.cryptolions.io push action xushenkai123 addpost '["xushenkai123", "my post"]' -p xushenkai123
+
+    echo -e "$con_show_str_start 执行get table post $con_show_str_end"
+    cleos -u http://jungle2.cryptolions.io get table xushenkai123 xushenkai123 post
 
 }
 
